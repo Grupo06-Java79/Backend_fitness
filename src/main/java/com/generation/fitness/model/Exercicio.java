@@ -31,11 +31,11 @@ public class Exercicio {
 	private Long repeticao;
 
 	@ManyToOne
-	@JsonIgnoreProperties("treino")
+	@JsonIgnoreProperties("exercicio")
 	private Usuario usuario;
 
 	@ManyToOne
-	@JsonIgnoreProperties("treino")
+	@JsonIgnoreProperties("exercicio")
 	private Categoria categoria;
 
 	public Long getId() {

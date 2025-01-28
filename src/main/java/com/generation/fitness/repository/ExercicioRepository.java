@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.generation.fitness.model.Exercicio;
 
-public interface TreinoRepository extends JpaRepository<Exercicio, Long> {
+public interface ExercicioRepository extends JpaRepository<Exercicio, Long> {
 
 	public List<Exercicio> findAllByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
 

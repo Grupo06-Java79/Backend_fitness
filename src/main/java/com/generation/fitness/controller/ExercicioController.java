@@ -20,63 +20,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.fitness.model.Exercicio;
 import com.generation.fitness.repository.CategoriaRepository;
-import com.generation.fitness.repository.TreinoRepository;
+import com.generation.fitness.repository.ExercicioRepository;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/treinos")
+@RequestMapping("/exercicios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class TreinoController {
+public class ExercicioController {
 
 	@Autowired
-	private TreinoRepository treinoRepository;
+	private ExercicioRepository exercicioRepository;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
 	@GetMapping
 	public ResponseEntity<List<Exercicio>> getAll() {
-		return ResponseEntity.ok(treinoRepository.findAll());
+		return ResponseEntity.ok(exercicioRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Exercicio> getById(@PathVariable Long id) {
-		return treinoRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+		return exercicioRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Exercicio>> getByDescricao(@PathVariable String descricao) {
-		return ResponseEntity.ok(treinoRepository.findAllByDescricaoContainingIgnoreCase(descricao));
+		return ResponseEntity.ok(exercicioRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 
 	@PostMapping
-	public ResponseEntity<Exercicio> post(@Valid @RequestBody Exercicio treino) {
-		if (categoriaRepository.existsById(treino.getCategoria().getId()))
-			return ResponseEntity.status(HttpStatus.CREATED).body(treinoRepository.save(treino));
+	public ResponseEntity<Exercicio> post(@Valid @RequestBody Exercicio exercicio) {
+		if (categoriaRepository.existsById(exercicio.getCategoria().getId()))
+			return ResponseEntity.status(HttpStatus.CREATED).body(exercicioRepository.save(exercicio));
 
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe!", null);
 	}
 
 	@PutMapping
-	public ResponseEntity<Exercicio> put(@Valid @RequestBody Exercicio treino) {
-		if (treinoRepository.existsById(treino.getId())) {
+	public ResponseEntity<Exercicio> put(@Valid @RequestBody Exercicio exercicio) {
+		if (exercicioRepository.existsById(exercicio.getId())) {
 		}
 
-		if (categoriaRepository.existsById(treino.getCategoria().getId()))
-			return ResponseEntity.status(HttpStatus.OK).body(treinoRepository.save(treino));
+		if (categoriaRepository.existsById(exercicio.getCategoria().getId()))
+			return ResponseEntity.status(HttpStatus.OK).body(exercicioRepository.save(exercicio));
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe!", null);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Exercicio> treino = treinoRepository.findById(id);
+		Optional<Exercicio> exercicio = exercicioRepository.findById(id);
 
-		if (treino.isEmpty())
+		if (exercicio.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-		treinoRepository.deleteById(id);
+		exercicioRepository.deleteById(id);
 	}
 }
