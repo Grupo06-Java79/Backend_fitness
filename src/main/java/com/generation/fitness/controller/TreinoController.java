@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.generation.fitness.model.Treino;
+import com.generation.fitness.repository.CategoriaRepository;
 import com.generation.fitness.repository.TreinoRepository;
 
 import jakarta.validation.Valid;
