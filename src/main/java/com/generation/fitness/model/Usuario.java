@@ -1,5 +1,7 @@
 package com.generation.fitness.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -49,7 +51,7 @@ public class Usuario {
 	
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties ("usuario")
-	private Treino treino;
+	private List<Treino> treino;
 
 	public Long getId() {
 		return id;
@@ -122,14 +124,16 @@ public class Usuario {
 	public void setIdade(Long idade) {
 		this.idade = idade;
 	}
-	
-	public Treino getTreino() {
+
+	public List<Treino> getTreino() {
 		return treino;
 	}
 
-	public void setTreino(Treino treino) {
+	public void setTreino(List<Treino> treino) {
 		this.treino = treino;
 	}
+	
+	
 
 	/*/Método utilitário para calculcar IMC
 	private Double calcularIMC () {

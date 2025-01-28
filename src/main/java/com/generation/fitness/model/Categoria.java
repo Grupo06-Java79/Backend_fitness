@@ -1,5 +1,7 @@
 package com.generation.fitness.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -28,7 +30,7 @@ public class Categoria {
 	
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties ("categoria")
-	private Treino treino;
+	private List<Treino> treino;
 
 	public Long getId() {
 		return id;
@@ -54,12 +56,13 @@ public class Categoria {
 		this.grupo = grupo;
 	}
 
-	public Treino getTreino() {
+	public List<Treino> getTreino() {
 		return treino;
 	}
 
-	public void setTreino(Treino treino) {
+	public void setTreino(List<Treino> treino) {
 		this.treino = treino;
 	}
 
+	
 }
