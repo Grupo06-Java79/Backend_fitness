@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.generation.fitness.model.Categoria;
 import com.generation.fitness.repository.CategoriaRepository;
 
 import jakarta.validation.Valid;
@@ -41,10 +42,9 @@ public class CategoriaController {
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
-	@GetMapping("/{tipo}")
-	public ResponseEntity<Categoria> getById(@PathVariable String tipo) {
-		return categoriaRepository.findByTipo(tipo).map(resposta -> ResponseEntity.ok(resposta))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	@GetMapping("/tipo/{tipo}")
+	public ResponseEntity<List<Categoria>> getByTipo(@PathVariable String tipo) {
+		return ResponseEntity.ok(categoriaRepository.findAllByTipoContainingIgnoreCase(tipo));
 	}
 
 	@PostMapping

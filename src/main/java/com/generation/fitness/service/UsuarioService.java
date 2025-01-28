@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.generation.fitness.model.Usuario;
 import com.generation.fitness.repository.UsuarioRepository;
 
 @Service
