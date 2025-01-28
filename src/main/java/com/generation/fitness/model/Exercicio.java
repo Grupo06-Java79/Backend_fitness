@@ -11,32 +11,31 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "tb_treino")
-public class Treino {
-	
+@Table(name = "tb_exercicio")
+public class Exercicio {
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotNull (message = "O atributo Aparelho é obrigatório!")	
-	private String aparelho;
-	
-	@NotNull (message = "O atributo Descrição é obrigatório!")	
+
+	@NotNull(message = "O atributo Exercício é obrigatório!")
+	private String nome;
+
+	@NotNull(message = "O atributo Descrição é obrigatório!")
 	private String descricao;
-	
-	@NotNull (message = "O atributo Exercício é obrigatório!")	
-	private String exercicio;
-	
+
+	private String aparelho;
+
 	private Long serie;
-	
+
 	private Long repeticao;
-	
+
 	@ManyToOne
-	@JsonIgnoreProperties ("treino")
+	@JsonIgnoreProperties("treino")
 	private Usuario usuario;
-	
+
 	@ManyToOne
-	@JsonIgnoreProperties ("treino")
+	@JsonIgnoreProperties("treino")
 	private Categoria categoria;
 
 	public Long getId() {
@@ -63,12 +62,12 @@ public class Treino {
 		this.descricao = descricao;
 	}
 
-	public String getExercicio() {
-		return exercicio;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setExercicio(String exercicio) {
-		this.exercicio = exercicio;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Long getSerie() {
@@ -102,6 +101,5 @@ public class Treino {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
 }

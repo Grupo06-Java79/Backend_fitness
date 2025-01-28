@@ -30,7 +30,7 @@ public class Categoria {
 	
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties ("categoria")
-	private List<Treino> treino;
+	private List<Exercicio> treino;
 
 	public Long getId() {
 		return id;
@@ -56,11 +56,11 @@ public class Categoria {
 		this.grupo = grupo;
 	}
 
-	public List<Treino> getTreino() {
+	public List<Exercicio> getTreino() {
 		return treino;
 	}
 
-	public void setTreino(List<Treino> treino) {
+	public void setTreino(List<Exercicio> treino) {
 		this.treino = treino;
 	}
 

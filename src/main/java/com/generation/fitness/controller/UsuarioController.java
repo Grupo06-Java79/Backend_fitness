@@ -72,4 +72,18 @@ public class UsuarioController {
 
 	}
 
+	@PostMapping("/calcular-imc")
+	public ResponseEntity<String> calcularImc(@RequestBody Usuario usuario) {
+		try {
+			// chama o servico para calcular o imc
+			Double imc = usuarioService.calcularIMC(usuario.getPeso(), usuario.getAltura());
+			// chama o servico para classicar o imc
+			String classificacao = usuarioService.classificarIMC(imc);
+			return ResponseEntity.ok("IMC: " + imc + " Classificação: " + classificacao);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+
+	}
+
 }

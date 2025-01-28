@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.generation.fitness.model.Treino;
+import com.generation.fitness.model.Exercicio;
 import com.generation.fitness.repository.CategoriaRepository;
 import com.generation.fitness.repository.TreinoRepository;
 
@@ -36,23 +36,23 @@ public class TreinoController {
 	private CategoriaRepository categoriaRepository;
 
 	@GetMapping
-	public ResponseEntity<List<Treino>> getAll() {
+	public ResponseEntity<List<Exercicio>> getAll() {
 		return ResponseEntity.ok(treinoRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Treino> getById(@PathVariable Long id) {
+	public ResponseEntity<Exercicio> getById(@PathVariable Long id) {
 		return treinoRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 	@GetMapping("/descricao/{descricao}")
-	public ResponseEntity<List<Treino>> getByDescricao(@PathVariable String descricao) {
+	public ResponseEntity<List<Exercicio>> getByDescricao(@PathVariable String descricao) {
 		return ResponseEntity.ok(treinoRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 
 	@PostMapping
-	public ResponseEntity<Treino> post(@Valid @RequestBody Treino treino) {
+	public ResponseEntity<Exercicio> post(@Valid @RequestBody Exercicio treino) {
 		if (categoriaRepository.existsById(treino.getCategoria().getId()))
 			return ResponseEntity.status(HttpStatus.CREATED).body(treinoRepository.save(treino));
 
@@ -60,7 +60,7 @@ public class TreinoController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Treino> put(@Valid @RequestBody Treino treino) {
+	public ResponseEntity<Exercicio> put(@Valid @RequestBody Exercicio treino) {
 		if (treinoRepository.existsById(treino.getId())) {
 		}
 
@@ -72,7 +72,7 @@ public class TreinoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Treino> treino = treinoRepository.findById(id);
+		Optional<Exercicio> treino = treinoRepository.findById(id);
 
 		if (treino.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
