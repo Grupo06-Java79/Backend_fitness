@@ -79,7 +79,8 @@ public class UsuarioController {
 			Double imc = usuarioService.calcularIMC(usuario.getPeso(), usuario.getAltura());
 			// chama o servico para classicar o imc
 			String classificacao = usuarioService.classificarIMC(imc);
-			return ResponseEntity.ok("IMC: " + imc + " Classificação: " + classificacao);
+			String imcFormatado = String.format("%.2f", imc);
+			return ResponseEntity.ok("IMC: " + imcFormatado + " Classificação: " + classificacao);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}

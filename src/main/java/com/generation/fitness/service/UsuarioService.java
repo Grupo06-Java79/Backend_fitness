@@ -108,7 +108,7 @@ public class UsuarioService {
 
 	public Double calcularIMC(double peso, Long altura) {
 		if (altura > 0) {
-			double alturaMetros = altura / 100; // Converter altura de cm para m
+			double alturaMetros = altura.doubleValue() / 100; // Converter altura de cm para m
 			return peso / (alturaMetros * alturaMetros);
 		} else {
 			throw new IllegalArgumentException("Altura deve ser maior do que 0");
@@ -116,17 +116,18 @@ public class UsuarioService {
 	}
 
 	public String classificarIMC(Double imc) {
-
+		
 		if (imc < 18.5) {
-			return ("Você está abaixo do peso");
+			return "Você está abaixo do peso";
 		} else if (imc >= 18.5 && imc < 24.9) {
-			return ("Você está no peso ideal");
+			return "Você está no peso ideal";
 		} else if (imc >= 25 && imc < 29.9) {
-			return ("Você está com sobrepeso");
+			return "Você está com sobrepeso";
 		} else if (imc >= 30 && imc < 39.9) {
-			return ("Você está com obesidade I");
+			return "Você está com obesidade I";
 		} else {
-			return ("Você está com obesidade II");
+			return "Você está com obesidade II";
 		}
 	}
+
 }
