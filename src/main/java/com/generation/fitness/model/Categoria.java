@@ -56,11 +56,11 @@ public class Categoria {
 		this.grupo = grupo;
 	}
 
-	public List<Exercicio> getTreino() {
+	public List<Exercicio> getExercicio() {
 		return exercicio;
 	}
 
-	public void setTreino(List<Exercicio> exercicio) {
+	public void setExercicio(List<Exercicio> exercicio) {
 		this.exercicio = exercicio;
 	}
 

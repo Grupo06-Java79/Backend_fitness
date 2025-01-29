@@ -126,7 +126,7 @@ public class UsuarioService {
 		} else if (imc >= 30 && imc < 39.9) {
 			return ("Você está com obesidade I");
 		} else {
-			return ("Você está com obseidade II");
+			return ("Você está com obesidade II");
 		}
 	}
 }
