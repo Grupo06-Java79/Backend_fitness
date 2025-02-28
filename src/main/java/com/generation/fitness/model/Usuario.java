@@ -25,7 +25,6 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "O atributo Nome é obrigatório!")
 	private String nome;
 
 	@Schema(example = "email@email.com.br")
@@ -40,13 +39,10 @@ public class Usuario {
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
 
-	@NotNull(message = "O atributo Peso é obrigatório!")
 	private Double peso;
 
-	@NotNull(message = "O atributo Altura é obrigatório!")
 	private Long altura;
 
-	@NotNull(message = "O atributo Idade é obrigatório!")
 	private Long idade;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
