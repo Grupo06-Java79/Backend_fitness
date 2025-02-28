@@ -37,7 +37,7 @@ public class Usuario {
 	private String senha;
 
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
-	private String foto;
+	private String foto; 
 
 	private Double peso;
 
