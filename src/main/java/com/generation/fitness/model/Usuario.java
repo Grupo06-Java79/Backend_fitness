@@ -44,6 +44,16 @@ public class Usuario {
 	private Long altura;
 
 	private Long idade;
+	
+	private Double imc;
+
+	public Double getImc() {
+		return imc;
+	}
+
+	public void setImc(Double imc) {
+		this.imc = imc;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
@@ -120,5 +130,7 @@ public class Usuario {
 	public void setExercicio(List<Exercicio> exercicio) {
 		this.exercicio = exercicio;
 	}
+	
+	
 
 }

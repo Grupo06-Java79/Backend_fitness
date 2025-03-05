@@ -34,7 +34,8 @@ public class UsuarioService {
 			return Optional.empty();
 
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
-
+		//retorno
+		usuario.setImc(calcularIMC(usuario.getPeso(), usuario.getAltura())); 
 		return Optional.of(usuarioRepository.save(usuario));
 
 	}
@@ -49,7 +50,8 @@ public class UsuarioService {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
 
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
-
+			//retornando
+			usuario.setImc(calcularIMC(usuario.getPeso(), usuario.getAltura()));
 			return Optional.ofNullable(usuarioRepository.save(usuario));
 
 		}
@@ -116,7 +118,7 @@ public class UsuarioService {
 	}
 
 	public String classificarIMC(Double imc) {
-		
+
 		if (imc < 18.5) {
 			return "Você está abaixo do peso";
 		} else if (imc >= 18.5 && imc < 24.9) {
